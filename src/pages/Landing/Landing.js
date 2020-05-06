@@ -2,6 +2,7 @@ import React from 'react';
 import './Landing.scss';
 
 import EmptyState from '../../components/Page/Landing/EmptyState/EmptyState';
+import Gallery from '../../components/Page/Landing/Gallery/Gallery';
 
 function Landing(props) {
     return (
