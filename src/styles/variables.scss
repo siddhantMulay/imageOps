@@ -1,0 +1,10 @@
+//Body
+$maxWid: 1024px;
+
+@mixin pageLayout {
+    max-width: $maxWid;
+    margin   : 0 auto;
+    padding  : 1rem;
+}
+
+$primaryCol: #43c5ff;

@@ -1,0 +1,32 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Jost:400,500i,700&display=swap');
+
+html,
+body {
+    margin: 0;
+
+    * {
+        font-family: 'Jost', sans-serif;
+        box-sizing : border-box;
+    }
+}
+
+body {
+    @include pageLayout;
+
+    .pageContent {
+        height: calc(100vh - 190px);
+
+        div:first-of-type {
+            height: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        .pageContent {
+            height: calc(100vh - 150px);
+        }
+    }
+}

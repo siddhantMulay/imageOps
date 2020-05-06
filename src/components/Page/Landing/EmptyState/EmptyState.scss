@@ -1,0 +1,44 @@
+@import '../../../../styles/variables.scss';
+
+.emptyState {
+    position: relative;
+
+    .emptyImg {
+        position : absolute;
+        font-size: 15rem;
+        color    : #dadada;
+
+        &:first-of-type {
+            top      : 50px;
+            left     : 50px;
+            transform: rotate(-16deg);
+        }
+
+        // top      : inherit;
+        // left     : inherit;
+        // right    : 50px;
+        // bottom   : 50px;
+        // transform: rotate(16deg);
+    }
+
+    .emptyStateInner {
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+        flex-direction : column;
+        line-height    : 3;
+
+        span {
+            font-size  : 1.5rem;
+            font-weight: 500;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .emptyState {
+        .emptyImg {
+            font-size: 5rem;
+        }
+    }
+}
