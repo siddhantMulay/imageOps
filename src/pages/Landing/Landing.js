@@ -8,7 +8,7 @@ function Landing(props) {
     return (
         <div data-page="landing">
             <div className="galleryContainer">
-                <EmptyState />
+                <Gallery />
             </div>
         </div>
     )
