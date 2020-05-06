@@ -7,18 +7,17 @@
         position : absolute;
         font-size: 15rem;
         color    : #dadada;
+        top      : 50px;
+        left     : 50px;
+        transform: rotate(-16deg);
 
-        &:first-of-type {
-            top      : 50px;
-            left     : 50px;
-            transform: rotate(-16deg);
+        &:last-child {
+            top      : inherit;
+            left     : inherit;
+            right    : 50px;
+            bottom   : 50px;
+            transform: rotate(16deg);
         }
-
-        // top      : inherit;
-        // left     : inherit;
-        // right    : 50px;
-        // bottom   : 50px;
-        // transform: rotate(16deg);
     }
 
     .emptyStateInner {
@@ -39,6 +38,13 @@
     .emptyState {
         .emptyImg {
             font-size: 5rem;
+            top      : 0;
+            left     : 0;
+
+            &:last-child {
+                bottom: 0;
+                right : 0;
+            }
         }
     }
 }
