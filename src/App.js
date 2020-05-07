@@ -1,4 +1,8 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+
+//Import Store
+import dataStore from './redux/store';
 
 //Import Common Styles
 import './styles/common.scss';
@@ -11,12 +15,14 @@ import Landing from './pages/Landing/Landing';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="pageContent">
-        <Landing />
+    <Provider store={dataStore}>
+      <div className="App">
+        <Header />
+        <div className="pageContent">
+          <Landing />
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }
 

@@ -9,4 +9,8 @@
         background   : #fbfbfb;
         overflow-y   : auto;
     }
+
+    input[type="file"] {
+        display: none;
+    }
 }
