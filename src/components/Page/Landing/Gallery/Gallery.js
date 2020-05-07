@@ -16,6 +16,34 @@ class Gallery extends Component {
         };
     }
 
+    renderImages = (images) => {
+        let retArr = [];
+        images.forEach((item, index) => {
+            retArr.push(<img
+                key={`img${index + 2}`}
+                src={item}
+                alt="" />)
+        })
+        return retArr;
+    }
+
+    renderGalleryItems = () => {
+        const { imageData } = this.props;
+        let retArr = [];
+        imageData.forEach((item, index) => {
+            var allImages = imageData[index].images;
+            retArr.push(
+                <div className="galleryItem" key={`gi${index}`}
+                    onClick={() => this.openImages(allImages)}>
+                    <div className="images">
+                        {this.renderImages(allImages)}
+                    </div>
+                    <span>Collection {index + 1}</span>
+                </div>
+            )
+        });
+        return retArr;
+    }
 
     openImages = (images) => {
 
@@ -32,24 +60,9 @@ class Gallery extends Component {
 
     render() {
         const { photoIndex, isOpen, images } = this.state;
-        const allImages = [
-            "https://i.picsum.photos/id/743/200/200.jpg",
-            "https://i.picsum.photos/id/866/200/200.jpg",
-            "https://i.picsum.photos/id/966/200/200.jpg",
-            "https://i.picsum.photos/id/237/200/200.jpg"
-        ]
         return (
             <div className="gallery">
-                <div className="galleryItem"
-                    onClick={() => this.openImages(allImages)}>
-                    <div className="images">
-                        <img src="https://i.picsum.photos/id/743/200/200.jpg" alt="" />
-                        <img src="https://i.picsum.photos/id/866/200/200.jpg" alt="" />
-                        <img src="https://i.picsum.photos/id/966/200/200.jpg" alt="" />
-                        <img src="https://i.picsum.photos/id/237/200/200.jpg" alt="" />
-                    </div>
-                    <span>Collection 1</span>
-                </div>
+                {this.renderGalleryItems()}
 
                 {isOpen && (
                     <Lightbox
