@@ -11,7 +11,7 @@ const initialState = {
 function landingReducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_IMAGES:
-
+            
             return {
                 ...state,
                 imagesFound: action.imagesAvail,

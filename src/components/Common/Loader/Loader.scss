@@ -1,0 +1,36 @@
+@import '../../../styles/variables.scss';
+
+.loader {
+    position          : fixed;
+    top               : 0;
+    height            : 100vh;
+    width             : 100vw;
+    display           : flex;
+    align-items       : center;
+    justify-content   : center;
+    background        : rgba(255, 255, 255, 0.6);
+    z-index           : 9;
+    left              : 0;
+    transition        : all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+
+    .loadingInner {
+        height       : auto !important;
+        max-width    : 350px;
+        text-align   : center;
+        padding      : 1rem;
+        border-radius: 8px;
+        color        : #fff;
+        background   : #f5693d;
+    }
+
+    &[data-active="true"] {
+        transform: scale(1);
+        opacity  : 1;
+    }
+
+    &[data-active="false"] {
+        transform: scale(0);
+        opacity  : 0;
+    }
+}

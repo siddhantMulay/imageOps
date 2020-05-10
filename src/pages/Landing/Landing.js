@@ -3,9 +3,11 @@ import './Landing.scss';
 import { connect } from 'react-redux';
 import Button from '../../components/Common/Button/Button';
 
+//Get the components
 import EmptyState from '../../components/Page/Landing/EmptyState/EmptyState';
 import Gallery from '../../components/Page/Landing/Gallery/Gallery';
 import Notification from '../../components/Common/Notification/Notification';
+import Loader from '../../components/Common/Loader/Loader';
 
 import { loadImages, uploadImage } from '../../redux/actions/landingActions';
 
@@ -17,7 +19,8 @@ class Landing extends Component {
         this.state = {
             showNoti: false,
             notiType: "",
-            notifyText: ""
+            notifyText: "",
+            imgLoading: true
         }
     }
 
@@ -26,7 +29,11 @@ class Landing extends Component {
     }
 
     componentDidMount() {
-        loadImages(0)
+        loadImages(0).then(() => {
+            this.setState({
+                imgLoading: false
+            })
+        })
     }
 
     notificationToggle = (show, type, text) => {
@@ -52,6 +59,7 @@ class Landing extends Component {
         img.onload = function () {
             let imgWid = this.width;
             let imgHeight = this.height;
+
             if (imgWid !== 1024 && imgHeight !== 1024) {
                 scopeThis.notificationToggle(true, "error", "Image provided is not 1024x1024");
             }
@@ -66,7 +74,14 @@ class Landing extends Component {
                         imgUploaded ? "success" : "error",
                         imgUploaded ? "Image Uploaded, Nice!" : "Something went wrong bro.");
                     if (imgUploaded) {
-                        loadImages(response.version)
+                        scopeThis.setState({
+                            imgLoading: true
+                        })
+                        loadImages(response.version).then(() => {
+                            scopeThis.setState({
+                                imgLoading: false
+                            })
+                        })
                     }
                 });
             }
@@ -75,10 +90,11 @@ class Landing extends Component {
 
     render() {
         const { imagesFound, imageData } = this.props;
-        const { showNoti, notiType, notifyText } = this.state;
+        const { showNoti, notiType, notifyText, imgLoading } = this.state;
 
         return (
             <div data-page="landing">
+
                 {imagesFound ? <span className="uploadContainer">
                     <Button
                         text="Upload"
@@ -110,7 +126,9 @@ class Landing extends Component {
                     type={notiType}
                     msg={notifyText} />
 
-
+                <Loader
+                    active={imgLoading}
+                />
             </div>
         )
     }
