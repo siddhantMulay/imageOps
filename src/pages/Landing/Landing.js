@@ -55,37 +55,44 @@ class Landing extends Component {
         let file = event.target.files[0];
 
         if (file !== undefined) {
-            let img = new Image();
-            let _URL = window.URL || window.webkitURL;
-            img.src = _URL.createObjectURL(file);
-            img.onload = function () {
-                let imgWid = this.width;
-                let imgHeight = this.height;
 
-                if (imgWid !== 1024 && imgHeight !== 1024) {
-                    scopeThis.notificationToggle(true, "error", "Image provided is not 1024x1024");
-                }
-                else {
-                    scopeThis.notificationToggle(true,
-                        "upload",
-                        "Pushing the image up to the sky!");
+            if (!file.type.includes("image")) {
+                scopeThis.notificationToggle(true, "error", "This is not an image man.");
 
-                    uploadImage(file, (response) => {
-                        let imgUploaded = Object.keys(response).length > 0 ? true : false;
-                        scopeThis.notificationToggle(imgUploaded,
-                            imgUploaded ? "success" : "error",
-                            imgUploaded ? "Image Uploaded, Nice!" : "Something went wrong bro.");
-                        if (imgUploaded) {
-                            scopeThis.setState({
-                                imgLoading: true
-                            })
-                            loadImages(response.version).then(() => {
+            }
+            else {
+                let img = new Image();
+                let _URL = window.URL || window.webkitURL;
+                img.src = _URL.createObjectURL(file);
+                img.onload = function () {
+                    let imgWid = this.width;
+                    let imgHeight = this.height;
+
+                    if (imgWid !== 1024 && imgHeight !== 1024) {
+                        scopeThis.notificationToggle(true, "error", "Image provided is not 1024x1024");
+                    }
+                    else {
+                        scopeThis.notificationToggle(true,
+                            "upload",
+                            "Pushing the image up to the sky!");
+
+                        uploadImage(file, (response) => {
+                            let imgUploaded = Object.keys(response).length > 0 ? true : false;
+                            scopeThis.notificationToggle(imgUploaded,
+                                imgUploaded ? "success" : "error",
+                                imgUploaded ? "Image Uploaded, Nice!" : "Something went wrong bro.");
+                            if (imgUploaded) {
                                 scopeThis.setState({
-                                    imgLoading: false
+                                    imgLoading: true
                                 })
-                            })
-                        }
-                    });
+                                loadImages(response.version).then(() => {
+                                    scopeThis.setState({
+                                        imgLoading: false
+                                    })
+                                })
+                            }
+                        });
+                    }
                 }
             };
         }

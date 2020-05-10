@@ -11,6 +11,7 @@
     padding      : 1rem;
     border-radius: 8px;
     color        : #fff;
+    z-index      : 10;
 
     transition        : all 0.2s ease;
     -webkit-transition: all 0.2s ease;
@@ -32,7 +33,7 @@
     &[data-type="error"] {
         background: #d24035;
     }
-    
+
 
     &[data-type="success"] {
         background: #4caf50;
