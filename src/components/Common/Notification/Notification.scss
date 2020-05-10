@@ -25,9 +25,14 @@
         opacity  : 1;
     }
 
+    &[data-type="upload"] {
+        background: $primaryCol;
+    }
+
     &[data-type="error"] {
         background: #d24035;
     }
+    
 
     &[data-type="success"] {
         background: #4caf50;

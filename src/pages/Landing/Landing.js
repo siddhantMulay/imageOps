@@ -26,7 +26,7 @@ class Landing extends Component {
     }
 
     componentDidMount() {
-        loadImages()
+        loadImages(0)
     }
 
     notificationToggle = (show, type, text) => {
@@ -56,12 +56,18 @@ class Landing extends Component {
                 scopeThis.notificationToggle(true, "error", "Image provided is not 1024x1024");
             }
             else {
+                scopeThis.notificationToggle(true,
+                    "upload",
+                    "Pushing the image up to the sky!");
+
                 uploadImage(file, (response) => {
                     let imgUploaded = Object.keys(response).length > 0 ? true : false;
                     scopeThis.notificationToggle(imgUploaded,
                         imgUploaded ? "success" : "error",
                         imgUploaded ? "Image Uploaded, Nice!" : "Something went wrong bro.");
-                    loadImages();
+                    if (imgUploaded) {
+                        loadImages(response.version)
+                    }
                 });
             }
         };
@@ -73,10 +79,13 @@ class Landing extends Component {
 
         return (
             <div data-page="landing">
-                <Button
-                    text="Let's Upload"
-                    action={this.triggerImageSelection}
-                />
+                <span className="uploadContainer">
+                    <Button
+                        text="Upload"
+                        action={this.triggerImageSelection}
+                    />
+                    <span className="note">only 1024x1024 image is accepted</span>
+                </span>
                 <div className="galleryContainer">
                     {imagesFound ?
                         <Gallery imageData={imageData} />

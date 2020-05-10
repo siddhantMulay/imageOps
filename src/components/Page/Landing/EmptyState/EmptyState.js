@@ -4,7 +4,7 @@ import Button from '../../../Common/Button/Button';
 import LineIcons from 'react-lineicons';
 
 function EmptyState(props) {
-    const { action, text, loading } = props;
+    const { action, text } = props;
     return (
         <div className="emptyState">
             <div className="emptyStateInner">
@@ -14,6 +14,7 @@ function EmptyState(props) {
                     text="Let's Upload"
                     action={action}
                 />
+                <span className="note">only 1024x1024 image is accepted</span>
             </div>
 
             <div className="emptyImg">

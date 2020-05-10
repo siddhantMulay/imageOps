@@ -5,18 +5,18 @@ import { getImages, uploadFile } from '../../common/API';
 
 //Load Images
 export const LOAD_IMAGES = 'LOAD_IMAGES';
-export async function loadImages() {
+export async function loadImages(version) {
 
     let imagesAvail = false;
     let imgArr = [];
     let dimensionData = config.IMAGE_RESOLUTIONS;
 
-    await getImages((response) => {
+    await getImages(version, (response) => {
 
         if (response !== undefined) {
             let allImages = response.resources;
-            imagesAvail = true;
             if (allImages !== undefined) {
+                imagesAvail = true;
                 allImages.forEach((item, index) => {
                     imgArr.push({
                         'id': index,
@@ -25,7 +25,7 @@ export async function loadImages() {
                     for (let key in dimensionData) {
                         var keyName = dimensionData[key];
                         var dimensions = `w_${keyName.w},h_${keyName.h},c_fill`
-                        var endpoint = `${config.IMAGE_BASE_URL}/${dimensions}/v${item.version}/${item.public_id}.${item.format}`;
+                        var endpoint = `${config.IMAGE_BASE_URL}/${dimensions}/${item.public_id}.${item.format}`;
                         imgArr[index].images.push(endpoint)
                     }
                 });

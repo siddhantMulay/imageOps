@@ -1,9 +1,5 @@
 
 const config = require('./config');
-var cloudinary = require("cloudinary-core");
-
-var cl = new cloudinary.Cloudinary();
-
 //Generic API Request
 async function apiRequest(url, method, data, callback) {
 
@@ -15,7 +11,9 @@ async function apiRequest(url, method, data, callback) {
     }
 
     await fetch(url, options).then(
-        response => response.json()
+        response =>
+            response.json()
+
     )
         .then(result => {
             callback(result);
@@ -36,8 +34,12 @@ function uploadFile(file, callback) {
 }
 
 //Fetch all Images
-function getImages(callback) {
-    const url = `http://res.cloudinary.com/${config.CLOUD_NAME}/image/list/test.json`;
+function getImages(version, callback) {
+    if (version === 0) {
+        version = parseInt(Math.random() * 10000);
+    }
+
+    const url = `https://res.cloudinary.com/${config.CLOUD_NAME}/image/list/v${version}/test.json`;
     apiRequest(url, '', {}, callback)
 }
 
