@@ -1,7 +1,6 @@
 
 import {
-    LOAD_IMAGES,
-    UPLOAD_IMAGE
+    LOAD_IMAGES
 } from '../actions/landingActions';
 
 const initialState = {
@@ -18,12 +17,6 @@ function landingReducer(state = initialState, action) {
                 imagesFound: action.imagesAvail,
                 imageData: action.imgArr
             };
-
-        case UPLOAD_IMAGE:
-            return {
-                ...state
-            };
-
 
         default:
             return state;

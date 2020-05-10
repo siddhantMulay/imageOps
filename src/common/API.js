@@ -13,7 +13,6 @@ async function apiRequest(url, method, data, callback) {
     await fetch(url, options).then(
         response =>
             response.json()
-
     )
         .then(result => {
             callback(result);

@@ -2,6 +2,19 @@
 
 [data-page="landing"] {
 
+    .uploadContainer {
+        text-align : right;
+        position   : absolute;
+        top        : -88px;
+        right      : 8px;
+        line-height: 2;
+
+        .note {
+            display  : block;
+            font-size: 13px;
+        }
+    }
+
     .galleryContainer {
         padding      : 1rem;
         border       : 1px solid #ddd;
@@ -12,5 +25,31 @@
 
     input[type="file"] {
         display: none;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    [data-page="landing"] {
+        .uploadContainer {
+            zoom: 0.8;
+        }
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    [data-page="landing"] {
+
+        .uploadContainer {
+            top: -79px;
+
+            .note {
+                font-size  : 11px;
+                max-width  : 150px;
+                line-height: 1.3;
+                padding-top: 6px;
+
+            }
+        }
     }
 }

@@ -79,13 +79,14 @@ class Landing extends Component {
 
         return (
             <div data-page="landing">
-                <span className="uploadContainer">
+                {imagesFound ? <span className="uploadContainer">
                     <Button
                         text="Upload"
                         action={this.triggerImageSelection}
                     />
                     <span className="note">only 1024x1024 image is accepted</span>
                 </span>
+                    : null}
                 <div className="galleryContainer">
                     {imagesFound ?
                         <Gallery imageData={imageData} />
