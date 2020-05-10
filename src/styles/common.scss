@@ -17,6 +17,10 @@ body {
     .pageContent {
         height: calc(100vh - 190px);
 
+        >div {
+            position: relative;
+        }
+
         div:first-of-type {
             height: 100%;
         }

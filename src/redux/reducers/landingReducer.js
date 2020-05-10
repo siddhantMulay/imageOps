@@ -4,10 +4,7 @@ import {
     UPLOAD_IMAGE
 } from '../actions/landingActions';
 
-import { uploadFile } from '../../common/API';
-
 const initialState = {
-    imageUploading: false,
     imagesFound: false,
     imageData: []
 }
@@ -23,10 +20,6 @@ function landingReducer(state = initialState, action) {
             };
 
         case UPLOAD_IMAGE:
-            uploadFile(action.file, (response) => {
-                console.log(response)
-            });
-
             return {
                 ...state
             };

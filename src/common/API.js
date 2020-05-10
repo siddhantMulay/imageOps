@@ -28,7 +28,7 @@ async function apiRequest(url, method, data, callback) {
 //Upload File
 function uploadFile(file, callback) {
     const formData = new FormData();
-    formData.append('file', file[0]);
+    formData.append('file', file);
     formData.append('upload_preset', 'ml_default');
 
     const url = `${config.API_URL}/upload`;

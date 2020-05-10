@@ -1,0 +1,39 @@
+@import '../../../styles/variables.scss';
+
+.notification {
+    position     : absolute;
+    bottom       : 0;
+    left         : 0;
+    right        : 0;
+    margin       : 0 auto;
+    max-width    : 350px;
+    text-align   : center;
+    padding      : 1rem;
+    border-radius: 8px;
+    color        : #fff;
+
+    transition        : all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+
+    &.hide {
+        transform: translateY(25px);
+        opacity  : 0;
+    }
+
+    &.show {
+        transform: translateY(-25px);
+        opacity  : 1;
+    }
+
+    &[data-type="error"] {
+        background: #d24035;
+    }
+
+    &[data-type="success"] {
+        background: #4caf50;
+    }
+
+    .emoji {
+        margin-left: 10px;
+    }
+}
