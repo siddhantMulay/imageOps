@@ -12,7 +12,13 @@ class Gallery extends Component {
         this.state = {
             photoIndex: 0,
             isOpen: false,
-            images: []
+            images: [],
+            imagTitles: [
+                "Horizontal - 755x450",
+                "Vertical - 365x450",
+                "Horizontal Small - 365x212",
+                "Gallery - 380x380"
+            ]
         };
     }
 
@@ -59,13 +65,14 @@ class Gallery extends Component {
 
 
     render() {
-        const { photoIndex, isOpen, images } = this.state;
+        const { photoIndex, isOpen, images, imagTitles } = this.state;
         return (
             <div className="gallery">
                 {this.renderGalleryItems()}
 
                 {isOpen && (
                     <Lightbox
+                        imageTitle={imagTitles[photoIndex]}
                         mainSrc={images[photoIndex]}
                         nextSrc={images[(photoIndex + 1) % images.length]}
                         prevSrc={images[(photoIndex + images.length - 1) % images.length]}
