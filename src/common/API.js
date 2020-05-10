@@ -23,7 +23,7 @@ async function apiRequest(url, method, data, callback) {
 }
 
 //Upload File
-function uploadFile(file, callback) {
+export function uploadFile(file, callback) {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'ml_default');
@@ -33,7 +33,7 @@ function uploadFile(file, callback) {
 }
 
 //Fetch all Images
-function getImages(version, callback) {
+export function getImages(version, callback) {
     if (version === 0) {
         version = parseInt(Math.random() * 10000);
     }
@@ -41,6 +41,3 @@ function getImages(version, callback) {
     const url = `https://res.cloudinary.com/${config.CLOUD_NAME}/image/list/v${version}/test.json`;
     apiRequest(url, '', {}, callback)
 }
-
-
-module.exports = { getImages, uploadFile };
