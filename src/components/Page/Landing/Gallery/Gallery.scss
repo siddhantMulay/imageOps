@@ -4,8 +4,8 @@
     padding              : 2rem;
     display              : grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows   : 250px;
-    grid-column-gap      : 4rem;
+    grid-template-rows   : auto;
+    gap                  : 4rem;
 
     .galleryItem {
         text-align: center;

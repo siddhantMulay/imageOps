@@ -32,6 +32,8 @@ export async function loadImages(version) {
             }
         }
 
+        imgArr = imgArr.reverse();
+
         dataStore.dispatch({
             type: LOAD_IMAGES,
             imagesAvail,
